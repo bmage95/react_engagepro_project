@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 export default function FormCard() {
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea component={Link} to="/formbuilder">
+      <CardActionArea component={Link} to="/form-builder">
         <CardMedia
           component="img"
           height="180"

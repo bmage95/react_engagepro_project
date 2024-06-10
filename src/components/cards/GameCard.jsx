@@ -9,7 +9,7 @@ import { CardActionArea } from '@mui/material';
 export default function GameCard() {
     return (
       <Card sx={{ maxWidth: 345 }}>
-        <CardActionArea component={Link} to="/gamebuilder">
+        <CardActionArea component={Link} to="/game-builder">
           <CardMedia
             component="img"
             height="180"

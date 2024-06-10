@@ -1,7 +1,7 @@
 import React from 'react'
 import AppBar from '../components/appbar'
 
-const form_builder = () => {
+const quiz_builder = () => {
   return (
     <div>
         <AppBar/>
@@ -10,4 +10,4 @@ const form_builder = () => {
   )
 }
 
-export default form_builder
+export default quiz_builder

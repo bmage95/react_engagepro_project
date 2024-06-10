@@ -9,7 +9,7 @@ import { CardActionArea } from '@mui/material';
 export default function QuizCard() {
     return (
       <Card sx={{ maxWidth: 345 }}>
-        <CardActionArea component={Link} to="/quizbuilder">
+        <CardActionArea component={Link} to="/quiz-builder">
           <CardMedia
             component="img"
             height="180"
@@ -21,7 +21,7 @@ export default function QuizCard() {
               Quizzes
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Quizzes of all styles at the ease of your fingers, we more customisable quizzes than most alternatives out there.
+              Quizzes of all styles at the ease of your fingers, we offer more customisable quizzes than most alternatives out there.
             </Typography>
           </CardContent>
         </CardActionArea>
