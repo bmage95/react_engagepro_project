@@ -3,15 +3,16 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import { Link } from 'react-router-dom';
 import { CardActionArea } from '@mui/material';
 
 export default function QuizCard() {
     return (
       <Card sx={{ maxWidth: 345 }}>
-        <CardActionArea>
+        <CardActionArea component={Link} to="/quizbuilder">
           <CardMedia
             component="img"
-            height="140"
+            height="180"
             image={require("../../assets/images/quiz1.png")}
             alt="quiz img"
           />
