@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { UserContext } from '../UserContext';
 
-export default function AppBar({ profile }) {
+export default function AppBar() {
+  const { profile } = useContext(UserContext);
+
   return (
     <div className="appbar">
       <Link to='/'><h1 style={{ textAlign: "left" }}>Engage Pro</h1></Link>
