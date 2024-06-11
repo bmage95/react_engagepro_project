@@ -1,10 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import AppBar from './components/appbar';
 import { UserContext } from './UserContext';
 import './profile.css';
 
 const Profile = () => {
   const { profile, login, logOut } = useContext(UserContext);
+
+  useEffect(() => {
+    console.log('Profile data:', profile);
+  }, [profile]);
 
   return (
     <div>
@@ -14,7 +18,7 @@ const Profile = () => {
       <br />
       {profile ? (
         <div>
-          <img src={profile.picture} alt='pfp'/>
+          <img src={profile.picture} alt="Profile" style={{ width: '96px', height: '96px' }} onError={(e) => console.error('Error loading image:', e.nativeEvent)} />
           <h3>User Logged in</h3>
           <p>Name: {profile.name}</p>
           <p>Email Address: {profile.email}</p>
