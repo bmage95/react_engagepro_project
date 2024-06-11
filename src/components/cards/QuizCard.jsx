@@ -3,13 +3,16 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Link } from 'react-router-dom';
 import { CardActionArea } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { UserContext } from '../../UserContext';
 
 export default function QuizCard() {
+  const { profile } = useContext(UserContext);
     return (
       <Card sx={{ maxWidth: 345 }}>
-        <CardActionArea component={Link} to="/quiz-builder">
+        <CardActionArea component={Link} to={profile && profile.name ? "/quiz-builder" : "/profile"}>
           <CardMedia
             component="img"
             height="180"

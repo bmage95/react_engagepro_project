@@ -34,15 +34,7 @@ const UserProvider = ({ children }) => {
         .then((res) => {
           setProfile(res.data);
           localStorage.setItem('profile', JSON.stringify(res.data));
-
-          // Send user data to the backend
-          axios.post('http://localhost:3001/api/login', res.data)
-            .then(response => {
-              console.log('User data saved to backend:', response.data);
-            })
-            .catch(error => {
-              console.error('Error saving user data to backend:', error);
-            });
+          
         })
         .catch((err) => console.log('Error fetching Google user info:', err));
     }
