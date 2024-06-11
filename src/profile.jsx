@@ -1,14 +1,76 @@
-import React from 'react'
-import AppBar from './components/appbar'
+import React, { useState, useEffect } from 'react';
+import AppBar from './components/appbar';
+import { googleLogout, useGoogleLogin } from '@react-oauth/google';
+import axios from 'axios';
+import './profile.css';
 
-const profile = () => {
+const Profile = () => {
+  const [user, setUser] = useState(() => {
+    const savedUser = localStorage.getItem('user');
+    return savedUser ? JSON.parse(savedUser) : null;
+  });
+  const [profile, setProfile] = useState(() => {
+    const savedProfile = localStorage.getItem('profile');
+    return savedProfile ? JSON.parse(savedProfile) : null;
+  });
+
+  const login = useGoogleLogin({
+    onSuccess: (codeResponse) => {
+      setUser(codeResponse);
+      localStorage.setItem('user', JSON.stringify(codeResponse));
+    },
+    onError: (error) => console.log('Login Failed:', error),
+  });
+
+  useEffect(() => {
+    if (user && user.access_token) {
+      axios
+        .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`, {
+          headers: {
+            Authorization: `Bearer ${user.access_token}`,
+            Accept: 'application/json',
+          },
+        })
+        .then((res) => {
+          setProfile(res.data);
+          localStorage.setItem('profile', JSON.stringify(res.data));
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [user]);
+
+  const logOut = () => {
+    googleLogout();
+    setProfile(null);
+    setUser(null);
+    localStorage.removeItem('user');
+    localStorage.removeItem('profile');
+  };
+
   return (
     <div>
-      <AppBar/>
-
-      
+      <AppBar profile={profile} />
+      <h2>React Google Login</h2>
+      <br />
+      <br />
+      {profile ? (
+        <div>
+          <img src={profile.picture} alt='pfp'/>
+          <h3>User Logged in</h3>
+          <p>Name: {profile.name}</p>
+          <p>Email Address: {profile.email}</p>
+          <br />
+          <br />
+          <button onClick={logOut} className='btn2'>Sign out</button>
+        </div>
+      ) : (
+        <button onClick={login} className='btn2' style={{ float: 'left', top: '0', margin: '0 0 0 0', fontSize: '32px' }}>
+          <img src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy" alt="google logo" className='img2' />
+          Sign in with Google&nbsp;
+        </button>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default profile
+export default Profile;
