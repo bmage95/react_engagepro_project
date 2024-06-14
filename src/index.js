@@ -10,6 +10,7 @@ import MatchingTilesApp from './game_folder/matching_tiles/App';
 import Profile from './profile';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { UserProvider } from './UserContext';  
+import Builder from './form_folder/builder';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -25,6 +26,7 @@ root.render(
             <Route path='/game-builder' element={<GameBuilder />} />
             <Route path='/quiz-builder' element={<QuizBuilder />} />
             <Route path='/game-builder/matching-tiles' element={<MatchingTilesApp />} />
+            <Route path='/form-builder/builder' element={<Builder />} />
           </Routes>
         </BrowserRouter>
       </UserProvider>

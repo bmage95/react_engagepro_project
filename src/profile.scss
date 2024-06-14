@@ -1,5 +1,5 @@
 .profile_page_display{
-
+  
   
   .img2 {
     height: 30px;
@@ -14,7 +14,9 @@
   }
 
   .profile_body{
-    margin: 0 0 0 1rem;
+
+    margin-left: 1rem;
+    
     button {
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
         "Liberation Mono", "Courier New", monospace;
@@ -177,6 +179,8 @@ button:active .arrowContainer {
 }
 
 
-
+body{
+  overflow-x: hidden;
+}
 
 
