@@ -10,7 +10,7 @@ import MatchingTilesApp from './game_folder/matching_tiles/App';
 import Profile from './profile';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { UserProvider } from './UserContext';  
-import Builder from './form_folder/builder';
+import Builder from './form_folder/builder_main';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

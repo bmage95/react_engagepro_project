@@ -1,0 +1,95 @@
+// builder_main.scss
+@import url('https://fonts.googleapis.com/css?family=Saira+Semi+Condensed&display=swap');
+
+$all: all .5s ease;
+$sai: 'Saira Semi Condensed', sans-serif;
+
+.form_builder_page {
+    .form_builder_page2 {
+      width: 100%;
+      height: 100%;
+  
+      font-family: $sai;
+      transition: $all;
+    }
+
+
+      label, input, textarea {
+        padding: 8px;
+      }
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0 16px;
+
+    h1{
+        margin-top: 0;
+    }
+    
+
+        
+    button {
+        background: #5A766A;
+        padding: 8px 16px;
+        margin: 16px 0 50px 0;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        box-shadow: inset 0 0 0 1px #ccc;
+    
+        &:hover {
+        box-shadow: 2px 2px 2px 2px;
+        }
+    }
+
+    input, textarea {
+        background: rgba(255, 255, 255, .5);
+        border: none;
+        border-radius: 4px;
+        box-shadow: inset 0 0 0 1px #ccc;
+      
+        &:focus {
+          background: rgba(255, 255, 255, 1);
+          box-shadow: none;
+        }
+      }
+      
+      textarea {
+        resize: none;
+      
+        &::-webkit-scrollbar {
+          display: none;
+        }
+      }
+
+      label, [placeholder] {
+        color: #555;
+      }
+      
+      label i {
+        margin: 0 10px 0 0;
+      }    
+  }
+
+
+
+  .select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 16px;
+    transition: $all;
+    width: 100%;
+    &:focus {
+      outline: none;
+      border-color: #5A766A;
+    }
+  }
+  
