@@ -1,95 +1,247 @@
-// builder_main.scss
 @import url('https://fonts.googleapis.com/css?family=Saira+Semi+Condensed&display=swap');
 
 $all: all .5s ease;
 $sai: 'Saira Semi Condensed', sans-serif;
 
 .form_builder_page {
-    .form_builder_page2 {
-      width: 100%;
-      height: 100%;
-  
-      font-family: $sai;
-      transition: $all;
-    }
+  width: 100%;
+  height: 100%;
+  font-family: $sai;
+  transition: $all;
 
-
-      label, input, textarea {
-        padding: 8px;
-      }
-  }
-
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  .form_builder_page2 {
+    width: 50%;
     height: 100%;
-    padding: 0 16px;
-
-    h1{
-        margin-top: 0;
-    }
-    
-
-        
-    button {
-        background: #5A766A;
-        padding: 8px 16px;
-        margin: 16px 0 50px 0;
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        box-shadow: inset 0 0 0 1px #ccc;
-    
-        &:hover {
-        box-shadow: 2px 2px 2px 2px;
-        }
-    }
-
-    input, textarea {
-        background: rgba(255, 255, 255, .5);
-        border: none;
-        border-radius: 4px;
-        box-shadow: inset 0 0 0 1px #ccc;
-      
-        &:focus {
-          background: rgba(255, 255, 255, 1);
-          box-shadow: none;
-        }
-      }
-      
-      textarea {
-        resize: none;
-      
-        &::-webkit-scrollbar {
-          display: none;
-        }
-      }
-
-      label, [placeholder] {
-        color: #555;
-      }
-      
-      label i {
-        margin: 0 10px 0 0;
-      }    
   }
 
-
-
-  .select {
+  input, textarea, select {
     padding: 8px;
+    margin: 9px 0 0 0;
     border-radius: 4px;
     border: 1px solid #ccc;
-    background-color: #fff;
-    font-size: 16px;
-    transition: $all;
-    width: 100%;
+    box-shadow: inset 0 0 0 1px #ccc;
     &:focus {
-      outline: none;
-      border-color: #5A766A;
+      background: rgba(255, 255, 255, 1);
+      box-shadow: none;
     }
   }
+
+  input {
+    margin-bottom: 30px;
+  }
+
+  textarea {
+    resize: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  label, [placeholder] {
+    color: #555;
+  }
+
+  label i {
+    margin: 0 10px 0 0;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+
+  .Add_button{
+    position: relative;
+    right: 450px;
+    width: 110px;
+    height: 60px;
+    border-radius: 16px;
+  }
+
+  h1 {
+    margin-top: 0;
+    position: relative;
+    right: 40px;
+  }
+
+  .field-item{
+    width: 50%;
+  }
+
+  button {
+    background: black;
+    padding: 8px 20px;
+    margin: 16px 0 50px 0;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 1px #ccc;
+    &:hover {
+      box-shadow: 2px 2px 2px 2px;
+    }
+    position: relative;
+    top: 6.2px;
+    width: 90px;
+  }
+}
+
+.field {
+  width: 80%;
+  margin-bottom: 16px;
+  padding: 10px;
+  background-color: #5A766A;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   
+}
+
+.field-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.field-label {
+  margin-bottom: 8px;
+  cursor: pointer;
+  .title {
+    width: 50%;
+  }
+}
+
+.field-type {
+  margin-bottom: 8px;
+}
+
+.field-input {
+  .input-text {
+    width: 60%;
+  }
+
+  .textarea {
+    width: 60%;
+  }
+
+  .multichoice {
+    display: flex;
+    flex-direction: column;
+    .multichoice-option {
+      display: flex;
+      align-items: center;
+      .multichoice-input {
+        margin-right: 8px;
+        flex-grow: 1;
+      }
+    }
+  }
+}
+
+.preview_page {
+  padding: 20px;
+  background-color: #5A766A; 
+  border: 1px solid #ccc;
+  border-radius: 24px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; 
+  width: 70%;
+  position: relative;
+  left: 180px;
+
+  h1 {
+    margin-top: 0;
+    color: black;
+    font-size: 32px;
+  }
+
+  .field {
+    width: 100%;
+    margin-top: 20px;
+
+    > div {
+      border: 1px solid #ccc;
+      background-color: #fff;
+      border-radius: 4px;
+      padding: 15px;
+      margin-bottom: 15px;
+      width: 140%;
+      height:fit-content;
+      position: relative;
+      right: 40px;
+
+      label {
+        font-size: 18px;
+        color: #444;
+        margin-bottom: 10px;
+        display: block;
+      }
+
+      input[type='text'],
+      textarea,
+      select {
+        width: 90%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        transition: $all;
+        box-shadow: inset 0 0 0 1px #ccc;
+        &:focus {
+          outline: none;
+          border-color: #5A766A;
+          box-shadow: 0 0 5px rgba(90, 118, 106, 0.5);
+        }
+      }
+
+      input{
+        position: relative;
+        top:10px
+      }
+      select{
+        position: relative;
+        bottom: 5px;
+        left: 10px;
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 100px;
+      }
+
+      select {
+        padding: 8px;
+      }
+    }
+  }
+}
+
+.select {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  font-size: 16px;
+  transition: $all;
+  width: 60%;
+  &:focus {
+    outline: none;
+    border-color: #5A766A;
+  }
+}
+
+.multichoice-input{
+  width: 40%;
+}

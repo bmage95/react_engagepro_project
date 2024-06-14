@@ -33,6 +33,7 @@ function a11yProps(index) {
 
 const Builder = () => {
   const [formContent, setFormContent] = useState([]);
+  const [formTitle, setFormTitle] = useState("");
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
@@ -52,11 +53,16 @@ const Builder = () => {
         </Box>
 
         <CustomTabPanel value={value} index={0}>
-          <QuestionEditor formContent={formContent} setFormContent={setFormContent} />
+          <QuestionEditor 
+            formTitle={formTitle}
+            setFormTitle={setFormTitle}
+            formContent={formContent}
+            setFormContent={setFormContent} 
+          />
         </CustomTabPanel>
 
         <CustomTabPanel value={value} index={1}>
-          <PreviewPage formContent={formContent} />
+          <PreviewPage formTitle={formTitle} formContent={formContent} />
         </CustomTabPanel>
 
         <CustomTabPanel value={value} index={2}>

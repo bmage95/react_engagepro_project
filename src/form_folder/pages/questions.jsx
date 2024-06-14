@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import '../builder_main.scss';
 
-export default function QuestionEditor({ formContent, setFormContent }) {
+export default function QuestionEditor({ formTitle, setFormTitle, formContent, setFormContent }) {
   const [onEdit, setOnEdit] = useState(false);
   const [textField, setTextField] = useState("");
   const [editedField, setEditedField] = useState("");
@@ -49,14 +50,21 @@ export default function QuestionEditor({ formContent, setFormContent }) {
     <div className='container'>
       <div>
         <h1>Form Maker</h1>
-        <h2>Untitled Form</h2>
       </div>
       <div className='field'>
-        {formContent.map((field, index) => (
+      <input 
+          type="text" 
+          value={formTitle} 
+          onChange={(e) => setFormTitle(e.target.value)} 
+          placeholder="Title" 
+          style={{position:"relative", right:"24px"}}
+        />
+        {formContent.map((field) => (
           <div key={field.name} className='field-item'>
             <div className='field-label'>
               {onEdit && editedField === field.name ? (
                 <input
+                  className='title'
                   type="text"
                   value={field.label}
                   onChange={(e) => editField(field.name, e.target.value)}
@@ -91,10 +99,9 @@ export default function QuestionEditor({ formContent, setFormContent }) {
           </div>
         ))}
         <div className='field'>
-          <button onClick={addQuestion}>Add Question</button>
+          <button onClick={addQuestion} className='Add_button'>Add Question</button>
         </div>
       </div>
     </div>
-  );  
+  );
 }
-
