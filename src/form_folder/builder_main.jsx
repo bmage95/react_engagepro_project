@@ -38,7 +38,7 @@ const Builder = () => {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-  };
+  }; //test
 
   return (
     <div className='form_builder_page'>
