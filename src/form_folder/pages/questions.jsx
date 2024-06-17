@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PinkSwitch from '../../components/required_button'
 import '../builder_main.scss';
 
 export default function QuestionEditor({ formTitle, setFormTitle, formContent, setFormContent }) {
@@ -11,7 +12,8 @@ export default function QuestionEditor({ formTitle, setFormTitle, formContent, s
       name: `question_${formContent.length}`,
       label: "Untitled question",
       question_type: "short_answer",
-      list: []
+      list: [],
+      required: false
     };
     setFormContent([...formContent, field]);
   };
@@ -25,11 +27,11 @@ export default function QuestionEditor({ formTitle, setFormTitle, formContent, s
     }
   };
 
-  const editFieldType = (fieldName, fieldLabel) => {
+  const editFieldType = (fieldName, fieldType) => {
     const formFields = [...formContent];
     const fieldIndex = formFields.findIndex(f => f.name === fieldName);
     if (fieldIndex > -1) {
-      formFields[fieldIndex].question_type = fieldLabel;
+      formFields[fieldIndex].question_type = fieldType;
       setFormContent(formFields);
     }
   };
@@ -46,13 +48,22 @@ export default function QuestionEditor({ formTitle, setFormTitle, formContent, s
     }
   };
 
+  const toggleRequired = (fieldName) => {
+    const formFields = [...formContent];
+    const fieldIndex = formFields.findIndex(f => f.name === fieldName);
+    if (fieldIndex > -1) {
+      formFields[fieldIndex].required = !formFields[fieldIndex].required;
+      setFormContent(formFields);
+    }
+  };
+
   return (
     <div className='container'>
       <div>
         <h1>Form Maker</h1>
       </div>
       <div className='field'>
-      <input 
+        <input 
           type="text" 
           value={formTitle} 
           onChange={(e) => setFormTitle(e.target.value)} 
@@ -96,6 +107,7 @@ export default function QuestionEditor({ formTitle, setFormTitle, formContent, s
                 </div>
               )}
             </div>
+            <PinkSwitch checked={field.required} onChange={() => toggleRequired(field.name)} />
           </div>
         ))}
         <div className='field'>

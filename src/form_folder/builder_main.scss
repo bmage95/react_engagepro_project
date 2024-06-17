@@ -147,6 +147,22 @@ $sai: 'Saira Semi Condensed', sans-serif;
   }
 }
 
+.width2{
+  position: relative;
+  left: 40px;
+}
+
+.width3{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.width3 h1 {
+  text-align: center;
+  margin: 0;
+}
+
 .preview_page {
   padding: 20px;
   background-color: #5A766A; 
