@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.84c62d9e.css",
+    "main.js": "/static/js/main.f51ad901.js",
+    "static/media/yesno-game.png": "/static/media/yesno-game.25d445ba9f4535f9e493.png",
+    "static/media/game1.png": "/static/media/game1.7f43d93339f5a29b9b40.png",
+    "static/media/form1.png": "/static/media/form1.02e6a4d534ce508c7758.png",
+    "static/media/matching_wrk1.png": "/static/media/matching_wrk1.880544396c675ad8198d.png",
+    "static/media/trivia_tst1.png": "/static/media/trivia_tst1.35ba1b95779aa27ffd6b.png",
+    "static/media/quiz1.png": "/static/media/quiz1.1356e616c455a18960ad.png",
+    "static/media/personality_tst1.png": "/static/media/personality_tst1.eac93731f7b169cb684d.png",
+    "static/media/floor1.png": "/static/media/floor1.72c65c4c73c7ffccd20c.png",
+    "static/media/train-line.jpeg": "/static/media/train-line.d619355909f2f4a0ecdb.jpeg",
+    "static/media/elbato.png": "/static/media/elbato.19b22c8c1966b1331330.png",
+    "static/media/collage.jpg": "/static/media/collage.f27c38ec8b9166f12a95.jpg",
+    "static/media/logo4.png": "/static/media/logo4.1d6c422412194a886299.png",
+    "static/media/def_pfp.png": "/static/media/def_pfp.35bc69de1a3d8c8dbdee.png",
+    "static/media/plus_svg.png": "/static/media/plus_svg.f6ea6b13fef58abbc202.png",
+    "index.html": "/index.html",
+    "main.84c62d9e.css.map": "/static/css/main.84c62d9e.css.map",
+    "main.f51ad901.js.map": "/static/js/main.f51ad901.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.84c62d9e.css",
+    "static/js/main.f51ad901.js"
+  ]
+}
