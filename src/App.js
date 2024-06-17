@@ -4,7 +4,7 @@ import GameCard from './components/cards/GameCard';
 import QuizCard from './components/cards/QuizCard';
 import AppBar from './components/appbar';
 
-function App() {
+function    App() {
   return (
     <div className="App">
         <AppBar />

@@ -6,4 +6,3 @@ engage audiences effectively and gather valuable feedback.
 1. download relevent node modules
 2. npm start
 3. localhost:3000
-4. ball
