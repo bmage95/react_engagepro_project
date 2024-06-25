@@ -8,6 +8,10 @@
     bottom: 80px;
 }
 
+.outside_button input{
+    background-color: greenyellow;
+}
+
 .Left .inside_button {
     position: relative;
     left: 40%;
@@ -88,8 +92,9 @@ table {
 .Right .value_inside {
     position: absolute;
     text-align: right;
-    right: 10%;
-    top: 45%;
+    right: 4%;
+    top: 32%;
+    font-size:x-small;
 }
 
 .value_inside {
@@ -110,20 +115,17 @@ table {
     text-align: center;
     font-size: 26px;
     position: relative;
-    bottom: 100px;
+    bottom: 90px;
     left: 550px;
     font-weight: 600;
 }
 
 .botbar {
-    position: relative;
-    top: 650px;
     width: 100%;
     color: black;
-    padding: 20px 0;
+    padding: 0;
     text-align: center;
     font-family: sans-serif;
-    position: absolute;
 }
 
 .botbar button {
@@ -137,7 +139,6 @@ table {
 
 .botbar button:hover {
     background-color: greenyellow;
-    animation: v
 }
 
 .match {

@@ -3,13 +3,14 @@ import Xarrow from 'react-xarrows';
 import './App.css';
 import LeftBox from './algo/LeftBox';
 import RightBox from './algo/RightBox';
-import AppBar from '../../components/appbar';
 
 const App = () => {
   const [arrows, setArrows] = useState([]);
   const [x, setX] = useState(0);
   const [modalVisible, setModalVisible] = useState(false);
   const [firstTimeModalVisible, setFirstTimeModalVisible] = useState(true);
+  const [images, setImages] = useState({}); // Object to store images for each box
+  const [numRows, setNumRows] = useState(2); // Initial number of rows
 
   useEffect(() => {
     const hasSeenModalBefore = localStorage.getItem('hasSeenModalBefore');
@@ -18,13 +19,29 @@ const App = () => {
     }
   }, []);
 
+  const formContent = [
+    { type: 'text', label: 'Question 1', value: 'What is your name?' },
+    { type: 'image', label: 'Image 1', src: 'https://example.com/image1.jpg', alt: 'Example Image' }
+  ];
+  
+
+  const handleImage = (e, boxId) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImages((prevImages) => ({
+        ...prevImages,
+        [boxId]: URL.createObjectURL(file),
+      }));
+    }
+  };
+
   const addArrow = ({ start, end }) => {
     setArrows([...arrows, { start, end }]);
     setX(x + 1);
   };
 
   const HandleSubmit = () => {
-    if (x === 4) {
+    if (x === numRows - 1) {
       setModalVisible(true);
     } else {
       alert('Please match all the tiles.');
@@ -41,89 +58,48 @@ const App = () => {
     localStorage.setItem('hasSeenModalBefore', true);
   };
 
+  const addRow = () => {
+    if (numRows < 10) {
+      setNumRows(numRows + 1);
+    } else {
+      alert('Maximum number of rows reached (10).');
+    }
+  };
+
   return (
     <div className="App">
-      <AppBar/>
-        <h2 className='matching_game_header'>Matching Game Builder🪛</h2>
+      <h2 className="matching_game_header">Matching Game Builder🪛</h2>
       <br /><br /><br />
       <div className="table-container">
         <table>
           <tbody>
-          <tr>
-              <td className="Left">
-                <button className="outside_button" type="button">
-                  <div className="value_inside">Train Map</div>
-                  <LeftBox {...{ addArrow, handler: 'right', boxId: '1' }}/>
-                </button>
-              </td>
-              <td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</td>
-              <td className="Right">
-                <button className="outside_button" type="button">
-                  <div className="value_inside">
-                    <img className='match' src={require('./assets/elbato.png')} alt="batman" />
-                  </div>
-                  <RightBox {...{ addArrow, handler: 'left', boxId: '5' }}/>
-                </button>
-              </td>
-            </tr>
-            <br/>
-            <tr>
-              <td className="Left">
-                <button className="outside_button" type="button">
-                  <div className="value_inside">Floor Map</div>
-                  <LeftBox {...{ addArrow, handler: 'right', boxId: '2' }}/>
-                </button>
-              </td>
-              <td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</td>
-              <td className="Right">
-                <button className="outside_button" type="button">
-                  <div className="value_inside">
-                    <img className='match' src={require('./assets/floor1.png')} alt="floor plan" />
-                  </div>
-                  <RightBox {...{ addArrow, handler: 'left', boxId: '6' }}/>
-                </button>
-              </td>
-            </tr> 
-            <br/>
-            <tr>
-              <td className="Left">
-                <button className="outside_button" type="button">
-                  <div className="value_inside">Food Collage</div>
-                  <LeftBox {...{ addArrow, handler: 'right', boxId: '3' }}/>
-                </button>
-              </td>
-              <td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</td>
-              <td className="Right">
-                <button className="outside_button" type="button">
-                  <div className="value_inside">
-                    <img className='match' src={require('./assets/train-line.jpeg')} alt="train" />
-                  </div>
-                  <RightBox {...{ addArrow, handler: 'left', boxId: '7' }}/>
-                </button>
-              </td>
-            </tr>
-            <br/>
-            <tr>
-              <td className="Left">
-                <button className="outside_button" type="button">
-                  <div className="value_inside">Batman</div>
-                  <LeftBox {...{ addArrow, handler: 'right', boxId: '4' }}/>
-                </button>
-              </td>
-              <td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</td>
-              <td className="Right">
-                <button className="outside_button" type="button">
-                  <div className="value_inside">
-                    <img className='match' src={require('./assets/collage.jpg')} alt="collage" />
-                  </div>
-                  <RightBox {...{ addArrow, handler: 'left', boxId: '8' }}/>
-                </button>
-              </td>
-            </tr>
+            {[...Array(numRows)].map((_, index) => (
+              <React.Fragment key={index}>
+                <tr>
+                  <td className="Left">
+                    <button className="outside_button" type="button">
+                      <input className="value_inside" />
+                      <LeftBox {...{ addArrow, handler: 'right', boxId: `${index * 2 + 1}` }} />
+                    </button>
+                  </td>
+                  <td>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</td>
+                  <td className="Right">
+                    <button className="outside_button" type="button">
+                      <div className="value_inside">
+                        <input type="file" onChange={(e) => handleImage(e, `${index * 2 + 2}`)} />
+                        <img src={images[`${index * 2 + 2}`]} className="match" alt="" />
+                      </div>
+                      <RightBox {...{ addArrow, handler: 'left', boxId: `${index * 2 + 2}` }} />
+                    </button>
+                  </td>
+                </tr>
+                <br />
+              </React.Fragment>
+            ))}
           </tbody>
         </table>
         {arrows.map((ar) => (
-          <Xarrow start={ar.start} end={ar.end} key={ar.start + '-' + ar.end} strokeWidth={3} color='green'/>
+          <Xarrow start={ar.start} end={ar.end} key={ar.start + '-' + ar.end} strokeWidth={3} color="green" />
         ))}
       </div>
       <footer>
@@ -132,6 +108,9 @@ const App = () => {
           <button type="button" onClick={HandleSubmit}>
             Submit!
           </button>
+          <button type="button" onClick={addRow}>
+            Add Row
+          </button>
         </div>
       </footer>
 
@@ -139,18 +118,20 @@ const App = () => {
         <div className="modal-content">
           <span className="close" onClick={closeModal}>&times;</span>
           <p>Good Job!</p>
-          <img className='match' src={require('./assets/elbato.png')} alt='batmans'/>
+          <img className="match" src={require('./assets/elbato.png')} alt="batmans" />
         </div>
       </div>
 
       <div id="firstTimeModal" className={`modal ${firstTimeModalVisible ? '' : 'modal-hidden'}`}>
         <div className="modal-content">
           <span className="close" onClick={closeFirstTimeModal}>&times;</span>
-          <br/>   
+          <br />
           <p>Welcome to the Matching Game!</p>
-                  
-          <p>please <div className='instr_style1'>drag and drop</div><br/>
-           the circles to its closest match</p>
+          <p>
+            please <div className="instr_style1">drag and drop</div>
+            <br />
+            the circles to its closest match
+          </p>
           <span>(left to right)</span>
         </div>
       </div>

@@ -15,7 +15,7 @@ export default function AppBar() {
   }, [profile]);
 
   return (
-    <div className="appbar">
+    <div className="appbar" style={{position:"relative", top:0}}>
       <Link to='/'><img src={require('../assets/images/logo4.png')} className='appbar_logo'/>
       <h1 className='appbar_header'>Engage Pro</h1></Link>
 

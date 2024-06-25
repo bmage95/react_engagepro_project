@@ -1,21 +1,27 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+const express = require("express");
+const dotenv = require("dotenv");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const emailRoutes = require("./routes/emailRoutes.js");
+
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 const corsOptions = {
   origin: 'http://localhost:3000',
-  optionsSuccessStatus: 200
+  credentials: true,
+  optionsSuccessStatus: 200,
 };
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
+app.use(express.json()); // to accept JSON data from frontend
 
 // MongoDB Connection
-mongoose.connect('mongodb+srv://dbUser:aditya%40123@cluster0.fv6ix91.mongodb.net/', {
+mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
@@ -49,7 +55,13 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-// Start Server
+// Email Routes
+app.use("/email", emailRoutes);
+
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });

@@ -1,0 +1,43 @@
+.formBlock{
+    width: 100%;
+    border-radius: 5px;
+
+  
+  label{
+    width:100%;
+  }
+  
+  input[type="text"],
+  textarea{
+    display: table;
+    width: 40%;
+    border: 1px solid #d9d9d9;
+    font-size:14px;
+    padding:10px;
+    box-sizing: border-box;
+    margin: 0 auto 8px;
+  }
+  
+  .submitBtn{
+    display: table;
+    margin:0 auto;
+    border: none;
+    border-radius: 8px;
+    font-size:14px;
+    padding:5px;
+    background-color: #757575;
+    color: #fff;
+    margin-top: 30px;
+    height: 50px;
+    width: 90px;
+    //box-shadow: 10px 5px 5px red;
+  }
+
+  .actual_form{
+    padding: 20px;
+  }
+
+  body{
+    background-color:#ddd;
+  }
+}
