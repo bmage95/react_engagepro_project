@@ -23,6 +23,7 @@ const sendEmail = expressAsyncHandler(async (req, res) => {
     from: email,
     subject: subject,
     text: message,
+    cc: email
   };
 
   transporter.sendMail(mailOptions, function (error, info) {

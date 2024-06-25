@@ -39,7 +39,7 @@ export default function MyForm() {
       <div>
         <h2>Email Us!</h2>
         <form onSubmit={(e) => { e.preventDefault(); sendEmail(); }} className="actual_form">
- 
+
             <label>Your email: </label>
             <input
               type="email"
@@ -49,7 +49,7 @@ export default function MyForm() {
               required
             /><br/>
 
-            <label>Subject</label>
+            <label>Subject:</label>
             <input
               type="text"
               placeholder="Enter the subject here..."
@@ -58,7 +58,7 @@ export default function MyForm() {
               required
             /><br/>
 
-            <label>Message</label>
+            <label>Message:</label>
             <textarea
               placeholder="Enter your message here..."
               value={message}

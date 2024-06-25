@@ -24,6 +24,7 @@ router.post("/sendEmail", expressAsyncHandler(async (req, res) => {
     to: process.env.SMTP_MAIL, // your email address
     subject: subject,
     text: message,
+    cc: email,
   };
 
   transporter.sendMail(mailOptions, function (error, info) {
