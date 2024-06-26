@@ -20,7 +20,7 @@ const game_builder = () => {
               <td>
                 <div className='pulse'>
                   <Card sx={{  width:345 }}>
-                    <CardActionArea component={Link} to="/game-builder/matching-tiles-builder">
+                    <CardActionArea component={Link} to="/game-builder/matching-tiles">
                       <CardMedia
                         component="img"
                         height="180"
