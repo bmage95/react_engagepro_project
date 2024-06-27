@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import './question_state.scss';
 
 const QState = ({ addQuestion }) => {
-  const [questions, setQuestions] = useState([
-    { question: '', answer: 'yes' }
-  ]);
+  const [questions, setQuestions] = useState([{ question: '', answer: 'yes' }]);
 
   useEffect(() => {
     const savedQuestions = localStorage.getItem('unsavedQuestions');
@@ -60,28 +58,35 @@ const QState = ({ addQuestion }) => {
             id={`quest_${index}`} 
             value={q.question} 
             onChange={(e) => handleQuestionChange(index, e.target.value)} 
+            className='input_text'
           />
           
-          <div>
-            <input 
-              type="radio" 
-              id={`yes_${index}`} 
-              name={`quest_${index}`} 
-              checked={q.answer === 'yes'} 
-              onChange={() => handleAnswerChange(index, 'yes')}
-            />
-            <label htmlFor={`yes_${index}`}>Yes</label>
-          </div>
+          <div className="radio-input-wrapper">
+            <label className="label">
+              <input 
+                type="radio" 
+                id={`yes_${index}`} 
+                name={`quest_${index}`} 
+                checked={q.answer === 'yes'} 
+                onChange={() => handleAnswerChange(index, 'yes')}
+                className='radio-input'
+              />
+              <div className="radio-design"></div>
+              <div className="label-text">&nbsp;Yes</div>
+            </label>
 
-          <div>
-            <input 
-              type="radio" 
-              id={`no_${index}`} 
-              name={`quest_${index}`} 
-              checked={q.answer === 'no'} 
-              onChange={() => handleAnswerChange(index, 'no')}
-            />
-            <label htmlFor={`no_${index}`}>No</label>
+            <label className="label">
+              <input 
+                type="radio" 
+                id={`no_${index}`} 
+                name={`quest_${index}`} 
+                checked={q.answer === 'no'} 
+                onChange={() => handleAnswerChange(index, 'no')}
+                className='radio-input'
+              />
+              <div className="radio-design"></div>
+              <div>&nbsp;No</div>
+            </label>
           </div>
 
           <button onClick={() => handleRemoveQuestion(index)}>Remove</button>

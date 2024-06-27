@@ -3,4 +3,99 @@
         margin-bottom: 10px;
         padding: 20px;
     }
+
+    button {
+        width: 9em;
+        height: 3em;
+        border-radius: 30em;
+        font-size: 15px;
+        font-family: inherit;
+        border: none;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        margin: 12px 12px 1px 1px;
+    }
+       
+    button::before {
+       content: '';
+       width: 0;
+       height: 3em;
+       border-radius: 30em;
+       position: absolute;
+       top: 0;
+       left: 0;
+       background-image: linear-gradient(to right, #5A766A 0%, #7a9489 100%);
+       transition: .4s ease;
+       display: block;
+       z-index: -1;
+    }
+       
+    button:hover::before {
+       width: 9em;
+    }
+
+    label, .label {
+        color: inherit; /* reset color inheritance */
+      }
+
+    .label {
+    display: flex;
+    align-items: center;
+    border-radius: 100px;
+    margin: 5px 5px 5px;
+    cursor: pointer;
+    transition: .3s;
+    }
+
+    .radio-input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    z-index: -1;
+    }
+
+    .radio-design {
+    width: 22px;
+    height: 22px;
+    border-radius: 100px;
+    background: linear-gradient(to right bottom, #5A766A, #7a9489);
+    position: relative;
+    }
+
+    .radio-design::before {
+    content: '';
+    display: inline-block;
+    width: inherit;
+    height: inherit;
+    border-radius: inherit;
+    background: hsl(0, 0%, 90%);
+    transform: scale(1.1);
+    transition: .3s;
+    }
+
+    .radio-input:checked+.radio-design::before {
+    transform: scale(0);
+    }
+
+    label {
+    padding-left: 12px;
+    font-family: sans-serif;
+    font-size: 18px;
+    font-weight: 900;
+    transition: .3s;
+    padding-top: 4px;
+    }
+
+    .input_text{
+        width: 30%;
+        height: 20px;
+        border: solid black 2px;
+        border-radius: 6px;
+        padding: 5px;
+        font-size: 20px;
+    }
 }

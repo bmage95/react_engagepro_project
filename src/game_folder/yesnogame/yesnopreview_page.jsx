@@ -1,36 +1,51 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import './yesnopreview_page.scss'
+import './yesnopreview_page.scss';
 
 const YesNoPreviewPage = ({ questions }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [answers, setAnswers] = useState({});
+  const [userAnswers, setUserAnswers] = useState({});
+  const [score, setScore] = useState(0);
+  const [totalScore, setTotalScore] = useState(0);
 
   const handleAnswer = (answer) => {
-    setAnswers((prevAnswers) => ({...prevAnswers, [currentQuestionIndex]: answer }));
-    if (currentQuestionIndex < questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    setUserAnswers((prevAnswers) => ({ ...prevAnswers, [currentQuestionIndex]: answer }));
+
+    if (answer.toLowerCase() === questions[currentQuestionIndex].answer.toLowerCase()) {
+      setScore((prevScore) => prevScore + 10);
     }
+    
+    setTotalScore((prevTotal) => prevTotal + 10);
+
+    // Move to the next question
+    setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
   };
 
   return (
     <div>
-      {questions.length === 0? (
+      {questions.length === 0 ? (
         <h2>No questions added yet.</h2>
       ) : (
         <div>
           {currentQuestionIndex < questions.length ? (
             <div className='preview_yesno2'>
-                <h5>Question {currentQuestionIndex + 1}: {questions[currentQuestionIndex].question}</h5>
+              <h5>
+                Question {currentQuestionIndex + 1}: {questions[currentQuestionIndex].question}
+                <span className='score'>Score: {score}/{totalScore}</span>
+              </h5>
 
-                <div  className='preview_yesno'>
-                    <div className='no' onClick={() => handleAnswer('No')}><p>No</p></div>
-                    <div className='yes' onClick={() => handleAnswer('Yes')}><p>Yes</p></div>
-                </div>
+              <div className='preview_yesno'>
+                <div className='no' onClick={() => handleAnswer('no')}><p>No</p></div>
+                <div className='yes' onClick={() => handleAnswer('yes')}><p>Yes</p></div>
+              </div>
             </div>
-            ) : (
-            <p>You've answered all questions!</p>
-            )}
+          ) : (
+            <div className='good_job'>
+              <p>You've answered all questions!</p>
+              <p>Your score: {score}/{totalScore}</p>
+              <span>Good Job!</span>
+            </div>
+          )}
         </div>
       )}
     </div>

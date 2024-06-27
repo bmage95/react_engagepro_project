@@ -158,6 +158,14 @@ body {
   color: black;
 }
 
+body{
+  caret-color: transparent;
+}
+
+input, textarea {
+  caret-color: initial; //allows carot everywhere except input 
+}
+
 html::-webkit-scrollbar { 
   display: none;  //scroll bar hidden
 }
@@ -165,9 +173,6 @@ html::-webkit-scrollbar {
 .dark-mode {
   background-color: #132921;
   color:#DEB887;
-  html{
-    scrollbar-color:#132921 #DEB887;
-  }
 }
 
 .dark_switch{

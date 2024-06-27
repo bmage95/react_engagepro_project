@@ -6,7 +6,7 @@ import AppBar from './components/appbar';
 
 function    App() {
   return (
-    <div className="App">
+    <div className="App1">
         <AppBar />
         <h2 className='sub-title'>What Would You Like To Do <span>Today?</span></h2>
         <br /><br /><br />
