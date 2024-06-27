@@ -1,11 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import "./question_state.scss"
+import './question_state.scss';
 
 const QState = ({ addQuestion }) => {
   const [questions, setQuestions] = useState([
     { question: '', answer: 'yes' }
   ]);
+
+  useEffect(() => {
+    const savedQuestions = localStorage.getItem('unsavedQuestions');
+    if (savedQuestions) {
+      setQuestions(JSON.parse(savedQuestions));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('unsavedQuestions', JSON.stringify(questions));
+  }, [questions]);
 
   const handleQuestionChange = (index, value) => {
     const newQuestions = [...questions];
@@ -30,19 +41,20 @@ const QState = ({ addQuestion }) => {
     setQuestions(newQuestions);
   };
 
-  const handleSubmit = () => {
-    questions.forEach(q => {
-      if (q.question.trim() !== '') {
-        addQuestion(q);
-      }
-    });
+  const handleSubmit = (index) => {
+    const q = questions[index];
+    if (q.question.trim() !== '') {
+      addQuestion(q);
+      const newQuestions = questions.filter((_, i) => i !== index);
+      setQuestions(newQuestions);
+    }
   };
 
   return (
     <div className='ques_state'>
       {questions.map((q, index) => (
         <fieldset key={index}>
-          <label htmlFor={`quest_${index}`}>Enter Question {index+1}: </label><br />
+          <label htmlFor={`quest_${index}`}>Enter Question: </label><br />
           <input 
             type="text" 
             id={`quest_${index}`} 
@@ -73,14 +85,13 @@ const QState = ({ addQuestion }) => {
           </div>
 
           <button onClick={() => handleRemoveQuestion(index)}>Remove</button>
+          <button onClick={() => handleSubmit(index)}>Set Question</button>
         </fieldset>
       ))}
       
-      {questions.length < 15 && (
+      {questions.length < 5 && (
         <button onClick={handleAddQuestion}>Add Question</button>
       )}
-      
-      <button onClick={handleSubmit}>Set Questions</button>
     </div>
   );
 };

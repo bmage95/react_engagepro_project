@@ -72,7 +72,8 @@ table{
   float: right;
   margin-right: 10px;
   position: absolute;
-  right: 18px;
+  right: 22px;
+  top: 0.8px;
   font-size: 17px;
   background: transparent;
   border: none;
@@ -150,6 +151,27 @@ a {
   text-decoration: inherit; 
 }
 
-body{
-  margin: 0;
+/*body and dark mode is in dark mode file*/
+
+body {
+  background-color: white;
+  color: black;
+}
+
+html::-webkit-scrollbar { 
+  display: none;  //scroll bar hidden
+}
+
+.dark-mode {
+  background-color: #132921;
+  color:#DEB887;
+  html{
+    scrollbar-color:#132921 #DEB887;
+  }
+}
+
+.dark_switch{
+  position: absolute;
+  left: 1192px;
+  top: 3.1px;
 }

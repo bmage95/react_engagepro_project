@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import FormCard from './components/cards/FormCard';
 import GameCard from './components/cards/GameCard';
 import QuizCard from './components/cards/QuizCard';

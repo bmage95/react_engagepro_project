@@ -1,6 +1,6 @@
 .preview_yesno {
     width: 2400px;
-    height: 62.3%;
+    height: 62.7%;
     position: absolute;
     margin: 0;
     display: grid;
@@ -8,8 +8,8 @@
     text-align: center;
     overflow: hidden;
     position: absolute;
-    left: -400px;
-    top: 265px;
+    left: -422px;
+    top: 262px;
   
     & > * {
       background-color: #fff; // default background color
@@ -65,7 +65,7 @@
         position: relative;
         top: -80px;
         background-color: antiquewhite;
-        box-shadow: -30px -26px antiquewhite, 30px 30px antiquewhite;
+        box-shadow: -30px -27px antiquewhite, 30px 30px antiquewhite, -30px 30px black, 30px -27px black;
     }
     
   }

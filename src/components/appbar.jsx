@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../UserContext';
+import DarkModeButton from './dark_mode';
 
 export default function AppBar() {
   const { profile } = useContext(UserContext);
@@ -30,6 +31,8 @@ export default function AppBar() {
       </Link>
 
       <Link to='/contact-us'><button className='btn'>Contact Us</button></Link>
+
+      <div><DarkModeButton/></div>
     </div>
   );
 }
