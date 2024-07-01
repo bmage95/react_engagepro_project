@@ -14,7 +14,7 @@ const YesNoPreviewPage = ({ questions }) => {
     if (answer.toLowerCase() === questions[currentQuestionIndex].answer.toLowerCase()) {
       setScore((prevScore) => prevScore + 10);
     }
-    
+
     setTotalScore((prevTotal) => prevTotal + 10);
 
     // Move to the next question
@@ -33,7 +33,6 @@ const YesNoPreviewPage = ({ questions }) => {
                 Question {currentQuestionIndex + 1}: {questions[currentQuestionIndex].question}
                 <span className='score'>Score: {score}/{totalScore}</span>
               </h5>
-
               <div className='preview_yesno'>
                 <div className='no' onClick={() => handleAnswer('no')}><p>No</p></div>
                 <div className='yes' onClick={() => handleAnswer('yes')}><p>Yes</p></div>
