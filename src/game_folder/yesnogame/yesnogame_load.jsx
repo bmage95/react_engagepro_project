@@ -7,9 +7,11 @@ const YesNoGameLoad = ({ questions }) => {
   const { profile } = useContext(UserContext);
   const [savedGames, setSavedGames] = useState([]);
 
+  const userId = new mongoose.Types.ObjectId(parseInt(profile.id));
+
   useEffect(() => {
     if (profile && profile.id) {
-      axios.get(`http://localhost:3001/api/games/${profile.id}`)
+      axios.get(`http://localhost:3001/api/games/${userId}`)
         .then(response => setSavedGames(response.data))
         .catch(error => console.error('Error fetching saved games:', error));
     } else {
@@ -27,15 +29,7 @@ const YesNoGameLoad = ({ questions }) => {
       alert("Please add questions first.");
       return;
     }
-  
-    const userId = profile.id 
-    //const userId = mongoose.Types.ObjectId.isValid(profile.id) ? profile.id : null;
-    /*if (!userId) {
-      console.log('profile.id:', profile.id);
-      alert('Invalid user ID');
-      return;
-    }*/
-  
+
     const newSnapshot = {
       userId,
       questions,
