@@ -28,12 +28,13 @@ const YesNoGameLoad = ({ questions }) => {
       return;
     }
   
-    const userId = mongoose.Types.ObjectId.isValid(profile.id) ? profile.id : null;
-    if (!userId) {
+    const userId = profile.id 
+    //const userId = mongoose.Types.ObjectId.isValid(profile.id) ? profile.id : null;
+    /*if (!userId) {
       console.log('profile.id:', profile.id);
       alert('Invalid user ID');
       return;
-    }
+    }*/
   
     const newSnapshot = {
       userId,

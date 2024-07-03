@@ -21,15 +21,7 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(express.json());
 
-// Define `profile` here
-const profile = {
-  id: "666820b8bbbc49c5a339dc2c"
-};
-
-const ObjectId = mongoose.Types.ObjectId;
-const userId = new ObjectId(profile && profile.id);
-
-mongoose.connect(`mongodb://localhost:27017/${userId}`, {
+mongoose.connect('mongodb://localhost:27017/myDatabase', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -42,7 +34,7 @@ db.once('open', () => {
 
 // Routes
 app.use('/api/email', emailRoutes);
-app.use('/api/games', gameRoutes); // Register gameRoutes
+app.use('/api/games', gameRoutes);
 
 // Default route
 app.get('/', (req, res) => {
