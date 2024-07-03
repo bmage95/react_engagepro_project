@@ -17,7 +17,6 @@ const YesNoPreviewPage = ({ questions }) => {
 
     setTotalScore((prevTotal) => prevTotal + 10);
 
-    // Move to the next question
     setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
   };
 

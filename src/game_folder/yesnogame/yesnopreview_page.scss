@@ -10,6 +10,7 @@
     position: absolute;
     left: -422px;
     top: 262px;
+    color: black;
   
     & > * {
       background-color: #fff; // default background color
@@ -62,12 +63,13 @@
   
   .preview_yesno2 {
     text-align: center;
+    color: black;
     h5{
         font-size: 50px;
         position: relative;
         top: -80px;
-        background-color: antiquewhite;
-        box-shadow: -30px -27px antiquewhite, 30px 30px antiquewhite, -30px 30px black, 30px -27px black;
+        background-color:darkcyan;
+        box-shadow: -30px -27px darkcyan, 30px 30px darkcyan, -30px 30px black, 30px -27px black;
     }
     
   }
@@ -79,7 +81,5 @@
   .score{
     position: absolute;
     right: 50px;
+    color: black;
   }
-  
-  
-  

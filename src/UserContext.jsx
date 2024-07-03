@@ -32,13 +32,14 @@ const UserProvider = ({ children }) => {
           },
         })
         .then((res) => {
-          setProfile(res.data);
-          localStorage.setItem('profile', JSON.stringify(res.data));
-          
+          // Assuming 'id' is part of the response data from Google
+          const { id, name, email, picture } = res.data;
+          setProfile({ id, name, email, picture }); // Ensure 'id' is set here
+          localStorage.setItem('profile', JSON.stringify({ id, name, email, picture }));
         })
         .catch((err) => console.log('Error fetching Google user info:', err));
     }
-  }, [user]);
+  }, [user]);  
 
   const logOut = () => {
     googleLogout();
