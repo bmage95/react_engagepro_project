@@ -30,6 +30,7 @@ const YesNoGameLoad = ({ questions }) => {
   
     const userId = mongoose.Types.ObjectId.isValid(profile.id) ? profile.id : null;
     if (!userId) {
+      console.log('profile.id:', profile.id);
       alert('Invalid user ID');
       return;
     }
