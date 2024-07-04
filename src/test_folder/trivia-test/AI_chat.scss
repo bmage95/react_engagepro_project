@@ -1,0 +1,36 @@
+.triviaChatBot{
+    width: 100%;
+    font-size: 19px;
+
+    h1{
+        display: inline;
+        position: relative;
+        right: 27px;
+        bottom: 1px;
+    }
+
+    .input-container{
+        display: flex;
+        input{
+            width: 600px;
+            height: 50px;
+            border-radius: 18px;
+            border-color: #5A766A;
+            font-size: 22px;
+        }
+    }
+
+    button{
+        color: #1cc49d;
+        background-color: #1b2f31;
+        border-radius: 12px;
+        margin-left: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 3em;
+        width: 8em;
+        font-size: large;
+        font-weight: 600;
+    }
+}

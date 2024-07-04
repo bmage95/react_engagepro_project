@@ -5,6 +5,8 @@ import Box from '@mui/material/Box';
 import CustomTabPanel, { a11yProps } from '../../components/tab_panel';
 import AppBar from '../../components/appbar'
 import OpenAiChat from "./AI_chat.jsx";
+import TriviaBuilder from './TT_maker.tsx';
+import TriviaPreview from './TT_preview.jsx';
 
 const TTBuilder = () => {
     const [value, setValue] = useState(0);
@@ -20,12 +22,16 @@ const TTBuilder = () => {
           <Tabs value={value} onChange={handleChange}>
             <Tab label="Questions" {...a11yProps(0)} />
             <Tab label="Preview" {...a11yProps(1)} />
+            <Tab label="AI chat" {...a11yProps(2)} />
           </Tabs>
         </Box>
         <CustomTabPanel value={value} index={0}>
-            <p>hi</p>
+            <TriviaBuilder/>
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
+            <TriviaPreview/>
+        </CustomTabPanel>
+        <CustomTabPanel value={value} index={2}>
             <OpenAiChat/>
         </CustomTabPanel>
       </Box>

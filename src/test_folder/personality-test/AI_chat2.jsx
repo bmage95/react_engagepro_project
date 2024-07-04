@@ -1,31 +1,31 @@
 import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
-import './AI_chat.scss'
+import './AI_chat2.scss'
 
-const OpenAiChat = () => {
+const OpenAiChat2 = () => {
     const [value, setValue] = useState("");
     const [error, setError] = useState("");
     const [chatHistory, setChatHistory] = useState([]);
   
     const surpriseOptions = [
-      "India",
-      "space",
-      "ocean",
+      "athletes",
       "animals",
-      "movies",
-      "sports",
-      "food",
-      "music",
-      "books",
-      "fruits",
-      "cars",
-      "elements",
-      "human body",
+      "magicians",
+      "superheroes",
+      "introverts",
+      "extroverts",
+      "leaders",
+      "writers",
+      "doctors",
+      "engineers",
+      "mathematicians",
+      "old people",
+      "teens",
     ]
   
     const surprise = () => {
       const randomValue = surpriseOptions[Math.floor(Math.random() * surpriseOptions.length)];
-      const finalValue = "Give me trivia questions and answers about " + randomValue;
+      const finalValue = "Tell me a personality fact about " + randomValue;
       setValue(finalValue);
     }
   
@@ -87,13 +87,13 @@ const OpenAiChat = () => {
       }
     }
     return (
-      <div className="triviaChatBot">
+      <div className="personalityChatBot">
           <img src='https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg'/>
-          <h1>Trivia Bot</h1><br/>
+          <h1>Personality Bot</h1><br/>
           <div className="input-container"> 
             <input 
               value={value}
-              placeholder="  try asking for trivia questions!"
+              placeholder="  try asking for personality related questions!"
               onChange={(e) => setValue(e.target.value)} 
               onKeyDown={handleKeyDown} />
   
@@ -118,4 +118,4 @@ const OpenAiChat = () => {
     );
 };
 
-export default OpenAiChat;
+export default OpenAiChat2;

@@ -1,0 +1,75 @@
+.TTmaker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .d-flex {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  input[type="text"],
+  input[type="button"] {
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  input[placeholder="Title"] {
+    flex: 1;
+    font-size: 16px;
+    width: 200px;
+    height: 50px;
+    margin: 2px 2px 8px 2px;
+  }
+  
+  input[type="button"] {
+    background-color: #5A766A;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  input[type="button"]:hover {
+    background-color: #0056b3;
+  }
+  
+  input[type="submit"] {
+        color: #1cc49d;
+        background-color: #1b2f31;
+        border-radius: 12px;
+        margin-left: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 3em;
+        width: 8em;
+        font-size: large;
+        font-weight: 600;
+  }
+  
+  input[type="submit"]:hover {
+    background-color:#0056b3;
+  }
+  
+  .d-flex > div {
+    margin-right: 10px;
+  }
+  
+  .pl-4 {
+    padding-left: 1rem !important;
+  }
+  
+  .mb-3 {
+    margin-bottom: 1rem !important;
+  }
+  

@@ -21,10 +21,10 @@ export default function TestCard() {
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              Quizzes
+              Tests
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Quizzes of all styles at the ease of your fingers, we offer more customisable quizzes than most alternatives out there.
+              Tests of all styles at the ease of your fingers, we offer more customisable tests than most alternatives out there.
             </Typography>
           </CardContent>
         </CardActionArea>
