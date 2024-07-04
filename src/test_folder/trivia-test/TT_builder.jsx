@@ -4,6 +4,7 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import CustomTabPanel, { a11yProps } from '../../components/tab_panel';
 import AppBar from '../../components/appbar'
+import OpenAiChat from "./AI_chat.jsx";
 
 const TTBuilder = () => {
     const [value, setValue] = useState(0);
@@ -25,7 +26,7 @@ const TTBuilder = () => {
             <p>hi</p>
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
-            <p>hi2</p>
+            <OpenAiChat/>
         </CustomTabPanel>
       </Box>
     </div>

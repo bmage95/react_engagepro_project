@@ -8,11 +8,11 @@ import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from '../../UserContext';
 
-export default function QuizCard() {
+export default function TestCard() {
   const { profile } = useContext(UserContext);
     return (
       <Card sx={{ maxWidth: 345 }}>
-        <CardActionArea component={Link} to={profile && profile.name ? "/quiz-builder" : "/profile"}>
+        <CardActionArea component={Link} to={profile && profile.name ? "/test-builder" : "/profile"}>
           <CardMedia
             component="img"
             height="180"

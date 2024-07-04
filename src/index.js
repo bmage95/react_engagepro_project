@@ -4,16 +4,16 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App';
 import ContactUs from './contact_us';
 import FormBuilder from './form_folder/form_builder';
-import QuizBuilder from './quiz_folder/quiz_builder';
+import TestBuilder from './test_folder/test_builder';
 import GameBuilder from './game_folder/game_builder';
+import Builder from './form_folder/builder_main';
 import MatchingTilesApp from './game_folder/matching_tiles/MatchingBuilder';
 import YesNoGameBuilder from './game_folder/yesnogame/yesnogame_builder';
-import PTBuilder from './game_folder/personalitytest/PT_builder';
-import TTBuilder from './game_folder/trivia-test/TT_builder';
+import PTBuilder from './test_folder/personality-test/PT_builder';
+import TTBuilder from './test_folder/trivia-test/TT_builder';
 import Profile from './profile';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { UserProvider } from './UserContext';  
-import Builder from './form_folder/builder_main';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -27,12 +27,12 @@ root.render(
             <Route path='/profile' element={<Profile />} />
             <Route path='/form-builder' element={<FormBuilder />} />
             <Route path='/game-builder' element={<GameBuilder />} />
-            <Route path='/quiz-builder' element={<QuizBuilder />} />
+            <Route path='/test-builder' element={<TestBuilder />} />
+            <Route path='/form-builder/builder' element={<Builder />} />
             <Route path='/game-builder/matching-tiles' element={<MatchingTilesApp />} />
             <Route path='/game-builder/yesno-game' element={<YesNoGameBuilder />} />
-            <Route path='/game-builder/personality-test' element={<PTBuilder />} />
-            <Route path='/game-builder/trivia-test' element={<TTBuilder />} />
-            <Route path='/form-builder/builder' element={<Builder />} />
+            <Route path='/test-builder/personality-test' element={<PTBuilder />} />
+            <Route path='/test-builder/trivia-test' element={<TTBuilder />} />
           </Routes>
         </BrowserRouter>
       </UserProvider>

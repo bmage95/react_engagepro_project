@@ -1,7 +1,7 @@
 import './App.scss';
 import FormCard from './components/cards/FormCard';
 import GameCard from './components/cards/GameCard';
-import QuizCard from './components/cards/QuizCard';
+import TestCard from './components/cards/TestCard';
 import AppBar from './components/appbar';
 
 function    App() {
@@ -15,7 +15,7 @@ function    App() {
                 <tr>
                     <td><div className="card-container"><FormCard /></div></td>
                     <td><div className="card-container"><GameCard /></div></td>
-                    <td><div className="card-container"><QuizCard /></div></td>
+                    <td><div className="card-container"><TestCard /></div></td>
                 </tr>
             </tbody>
         </table>

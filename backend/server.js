@@ -1,3 +1,5 @@
+// server.js
+
 const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
@@ -5,6 +7,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const emailRoutes = require("./routes/emailRoutes.js");
 const gameRoutes = require('./routes/gameRoutes.js');
+const geminiRoutes = require('./routes/geminiRoutes.js'); // Import the geminiRoutes function
 
 dotenv.config();
 
@@ -32,7 +35,15 @@ db.once('open', () => {
   console.log('Connected to MongoDB');
 });
 
-// Routes
+// Function to set up and use geminiRoutes
+function setupGeminiRoutes() {
+  app.use('/gemini', geminiRoutes);
+}
+
+// Invoke the function to set up Gemini routes
+setupGeminiRoutes();
+
+// Other routes
 app.use('/api/email', emailRoutes);
 app.use('/api/games', gameRoutes);
 
