@@ -24,7 +24,7 @@
     border-radius: 4px;
   }
   
-  input[placeholder="Title"] {
+  input[name="title"] {
     flex: 1;
     font-size: 16px;
     width: 200px;
@@ -72,4 +72,41 @@
   .mb-3 {
     margin-bottom: 1rem !important;
   }
+
+  .trivia-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    h1 {
+        color: #333;
+    }
+
+    .question {
+        margin-bottom: 20px;
+        h2 {
+            margin-bottom: 10px;
+            color: #5A766A;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+
+            li {
+                background-color: gainsboro;
+                margin: 5px 0;
+                padding: 10px;
+                border-radius: 4px;
+            }
+        }
+    }
+}
+
   

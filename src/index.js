@@ -11,6 +11,7 @@ import MatchingTilesApp from './game_folder/matching_tiles/MatchingBuilder';
 import YesNoGameBuilder from './game_folder/yesnogame/yesnogame_builder';
 import PTBuilder from './test_folder/personality-test/PT_builder';
 import TTBuilder from './test_folder/trivia-test/TT_builder';
+import TriviaPreview from './test_folder/trivia-test/TT_preview';  
 import Profile from './profile';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { UserProvider } from './UserContext';  
@@ -33,6 +34,7 @@ root.render(
             <Route path='/game-builder/yesno-game' element={<YesNoGameBuilder />} />
             <Route path='/test-builder/personality-test' element={<PTBuilder />} />
             <Route path='/test-builder/trivia-test' element={<TTBuilder />} />
+            <Route path='/test-builder/trivia-test/preview' element={<TriviaPreview />} /> 
           </Routes>
         </BrowserRouter>
       </UserProvider>

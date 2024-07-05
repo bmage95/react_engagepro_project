@@ -1,121 +1,152 @@
-import React from "react";
-import './TT_maker.scss'
+import React, { useState, useEffect } from "react";
+import './TT_maker.scss';
 
-class TriviaBuilder extends React.Component<{}, { questions: any }> {
-  constructor(props: any) {
-    super(props);
-    this.state = {
-      questions: [{ title: "", options: ["", ""] }]
+const TriviaBuilder = ({ profile, setQuestions }) => {
+    const [localQuestions, setLocalQuestions] = useState([{ title: "", options: [{ title: "" }, { title: "" }] }]);
+    const userId = profile.id; 
+
+    useEffect(() => {
+        const storedQuestions = localStorage.getItem('savedQuestions');
+        if (storedQuestions) {
+            try {
+                setLocalQuestions(JSON.parse(storedQuestions));
+            } catch (error) {
+                console.error('Error parsing JSON:', error);
+                // Handle parsing error gracefully, maybe set default state
+            }
+        }
+    }, []);
+
+    const addClick = () => {
+        setLocalQuestions([...localQuestions, { title: "", options: [] }]);
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
 
-  addClick() {
-    this.setState((prevState) => ({
-      questions: [...prevState.questions, { title: "", options: [] }]
-    }));
-  }
-
-  removeClick(i: number) {
-    let questions = [...this.state.questions];
-    questions.splice(i, 1);
-    this.setState({ questions });
-  }
-  removeOption(qi: number, i: number) {
-    let questions = [...this.state.questions];
-    let options = [...questions[qi].options];
-    options.splice(i, 1);
-    questions[qi] = { ...questions[qi], options };
-    console.log(options);
-    this.setState({ questions });
-  }
-
-  handleSubmit(event: any) {
-    alert("A name was submitted: " + JSON.stringify(this.state.questions));
-    event.preventDefault();
-  }
-
-  handleChange(i: number, e: any) {
-    const { name, value } = e.target;
-    let questions = [...this.state.questions];
-    questions[i] = { ...questions[i], [name]: value };
-    this.setState({ questions });
-  }
-
-  handleOptions(qi: number, i: number, e: any) {
-    const { name, value } = e.target;
-    let questions: any = [...this.state.questions];
-    let options = [...questions[qi].options];
-    options[i] = { ...options[i], [name]: value };
-    questions[qi] = { ...questions[qi], options };
-    this.setState({ questions });
-  }
-
-  addOption(i: number) {
-    let questions = [...this.state.questions];
-    questions[i] = {
-      ...questions[i],
-      options: [...this.state.questions[i].options, { title: "" }]
+    const removeClick = (i) => {
+        let newQuestions = [...localQuestions];
+        newQuestions.splice(i, 1);
+        setLocalQuestions(newQuestions);
     };
-    this.setState({ questions });
-  }
 
-  createQuestions() {
-    console.log(this.state);
-    return this.state.questions.map((el: any, i: number) => (
-      <div className="d-flex flex-row bd-highlight mb-3" key={i}>
-        <input
-          placeholder="Title"
-          name="title"
-          value={el.title || ""}
-          onChange={(e) => this.handleChange(i, e)}
-        />
-        <div className="pl-4">{this.createOptions(i)}</div>
-        <input
-          type="button"
-          value="add options"
-          onClick={() => this.addOption(i)}
-        />
-        <input
-          type="button"
-          value="remove"
-          onClick={() => this.removeClick(i)}
-        />
-      </div>
-    ));
-  }
+    const removeOption = (qi, i) => {
+        let newQuestions = [...localQuestions];
+        let options = [...newQuestions[qi].options];
+        options.splice(i, 1);
+        newQuestions[qi] = { ...newQuestions[qi], options };
+        setLocalQuestions(newQuestions);
+    };
 
-  createOptions(qi: number) {
-    return this.state.questions[qi].options.map((el: any, i: number) => (
-      <div key={i}>
-        <input
-          placeholder="Title"
-          name="title"
-          value={el.title || ""}
-          onChange={(e) => this.handleOptions(qi, i, e)}
-        />
-        <input
-          type="button"
-          value="remove"
-          onClick={() => this.removeOption(qi, i)}
-        />
-      </div>
-    ));
-  }
+    const handleChange = (i, e) => {
+        const { name, value } = e.target;
+        let newQuestions = [...localQuestions];
+        newQuestions[i] = { ...newQuestions[i], [name]: value };
+        setLocalQuestions(newQuestions);
+        localStorage.setItem('savedQuestions', JSON.stringify(newQuestions));
+    };
 
-  render() {
+    const handleOptions = (qi, i, e) => {
+        const { name, value } = e.target;
+        let newQuestions = [...localQuestions];
+        let options = [...newQuestions[qi].options];
+        options[i] = { ...options[i], [name]: value };
+        newQuestions[qi] = { ...newQuestions[qi], options };
+        setLocalQuestions(newQuestions);
+        localStorage.setItem('savedQuestions', JSON.stringify(newQuestions));
+    };
+
+    const addOption = (i) => {
+        let newQuestions = [...localQuestions];
+        newQuestions[i] = {
+            ...newQuestions[i],
+            options: [...localQuestions[i].options, { title: "" }]
+        };
+        setLocalQuestions(newQuestions);
+        localStorage.setItem('savedQuestions', JSON.stringify(newQuestions));
+    };
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        if (!userId) {
+            console.error('User ID is undefined');
+            return;
+        }
+
+        console.log({ userId, localQuestions }); 
+        try {
+            const response = await fetch('http://localhost:3001/api/trivia', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ userId, questions: localQuestions })
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const result = await response.json();
+            setQuestions(localQuestions); // Update the questions in TTBuilder
+            alert('Trivia saved successfully: ' + JSON.stringify(result));
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
+
+    const createQuestions = () => {
+        return localQuestions.map((el, i) => (
+            <div className="d-flex flex-row bd-highlight mb-3" key={i}>
+                <input
+                    placeholder="Title"
+                    name="title"
+                    value={el.title || ""}
+                    onChange={(e) => handleChange(i, e)}
+                />
+                <div className="pl-4">{createOptions(i)}</div>
+                <input
+                    type="button"
+                    value="add options"
+                    onClick={() => addOption(i)}
+                />
+                <input
+                    type="button"
+                    value="remove"
+                    onClick={() => removeClick(i)}
+                />
+            </div>
+        ));
+    };
+
+    const createOptions = (qi) => {
+        return localQuestions[qi].options.map((el, i) => (
+            <div key={i}>
+                <input
+                    placeholder="Option"
+                    name="title"
+                    value={el.title || ""}
+                    onChange={(e) => handleOptions(qi, i, e)}
+                />
+                <input
+                    type="button"
+                    value="remove"
+                    onClick={() => removeOption(qi, i)}
+                />
+            </div>
+        ));
+    };
+
     return (
-      <form onSubmit={this.handleSubmit} className="TTmaker">
-        {this.createQuestions()}
-        <input
-          type="button"
-          value="add more"
-          onClick={this.addClick.bind(this)}
-        />
-        <input type="submit" value="Submit" />
-      </form>
+        <form className="TTmaker" onSubmit={handleSubmit}>
+            {createQuestions()}
+            <br/>
+            <input
+                type="button"
+                value="add more"
+                onClick={addClick}
+            />
+            <br/>
+            <input type="submit" value="Submit" />
+        </form>
     );
-  }
-}
+};
 
 export default TriviaBuilder;
