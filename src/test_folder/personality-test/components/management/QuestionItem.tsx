@@ -7,7 +7,7 @@ const QuestionItem = ({
     removeElem
 }: any) => {
     return (
-        <div className='flex justify-between border-b-2 py-1'>
+        <div>
             {item.question}
             <div>
             <button onClick={() => editElem(item.id)} className='rounded-full p-3 bg-primary mx-1'>

@@ -1,18 +1,25 @@
-import React from 'react'
-import { Link, useLocation } from 'react-router-dom';
-import AppBar from '../../../../components/appbar';
+import React from 'react';
 
-const TestResult = () => {
-    const { state }: any = useLocation()
-    return (
-        <div className='flex flex-col gap-12 justify-center items-center h-screen px-12 md:px-24 pt-24'>
-            <AppBar/>
-            <p className='animate__animated animate__fadeInUp text-4xl text-center font-bold text-slate-600'>
-                You are an {state.score > 10 ? 'Extrovert' : 'Introvert'}
-            </p>
-            <p className='animate__animated animate__fadeInUp animate__delay-2s text-4xl text-center font-bold text-slate-600'> You are awesome </p>
-        </div>
-    )
+interface TestResultProps {
+    score: number;
 }
 
-export default TestResult
+const TestResult: React.FC<TestResultProps> = ({ score }) => {
+    const personalityType = () => {
+        if(score > 10){
+            return 'Extrovert';
+        } else {
+            return 'Introvert';
+        }
+    }
+
+    return (
+        <div className="result-container">
+            <h2>Your Score: {score}</h2>
+            <h2>Your Personality Type: <span>{personalityType()}</span></h2>
+            <p>(hint: if score above 10 then extrovert)</p>
+        </div>
+    );
+};
+
+export default TestResult;

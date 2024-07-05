@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { FaHome, FaPlus } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { FaPlus } from 'react-icons/fa'
 import { setData, getData } from '../data/database.ts'
 import DataModal from '../DataModel.tsx'
 import QuestionItem from './QuestionItem.tsx'
@@ -55,20 +54,17 @@ const TestManagement = () => {
     }
 
     return (
-        <div className='flex justify-start items-center h-screen px-12 md:px-24 pt-24'>
-            <div className='flex flex-col gap-6 w-full'>
-                <div className='flex items-center justify-between'>
-                    <Link to="/" className='flex items-center text-sm md:text-base border-2 border-primary  rounded-md py-2 px-4'>
-                        <FaHome className='mx-1' />
-                        Home
-                    </Link>
-                    <button className='flex items-center text-sm md:text-base bg-primary text-slate-50 rounded-md py-2 px-4' onClick={() => setIsOpen(true)}>
-                        <FaPlus className='mx-1' />
-                        Add a question
+        <div>
+            <div>
+                <h1>Personality Test Maker</h1>
+                <div>
+                    <button onClick={() => setIsOpen(true)}>
+                        <FaPlus/>
+                        &nbsp;&nbsp;Add a question
                     </button>
                 </div>
-                <hr className='my-2 bg-primary h-[2px]' />
-                <div className='flex flex-col gap-6 w-full h-[60vh] overflow-auto'>
+                <hr/>
+                <div>
                 {
                     dataList && dataList.map(
                         (item: any) => <QuestionItem key={item.id} item={item} editElem={openEditModal} removeElem={removeElem} />

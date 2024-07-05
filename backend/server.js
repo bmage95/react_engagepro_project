@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const emailRoutes = require("./routes/emailRoutes.js");
 const gameRoutes = require('./routes/gameRoutes.js');
+const geminiRoutes = require('./routes/geminiRoutes.js');
 const triviaRoutes = require('./routes/triviaRoutes.js');
 
 dotenv.config();
@@ -35,6 +36,7 @@ db.once('open', () => {
 
 app.use('/api/email', emailRoutes);
 app.use('/api/games', gameRoutes);
+app.use('/gemini', geminiRoutes);
 app.use('/api/trivia', triviaRoutes);
 
 app.get('/', (req, res) => {

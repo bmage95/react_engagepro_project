@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
+import mongoose from "mongoose";
 import './TT_maker.scss';
 
 const TriviaBuilder = ({ profile, setQuestions }) => {
     const [localQuestions, setLocalQuestions] = useState([{ title: "", options: [{ title: "" }, { title: "" }] }]);
-    const userId = profile.id; 
+    const userId = new mongoose.Types.ObjectId(parseInt(profile.id));
 
     useEffect(() => {
         const storedQuestions = localStorage.getItem('savedQuestions');
@@ -12,7 +13,6 @@ const TriviaBuilder = ({ profile, setQuestions }) => {
                 setLocalQuestions(JSON.parse(storedQuestions));
             } catch (error) {
                 console.error('Error parsing JSON:', error);
-                // Handle parsing error gracefully, maybe set default state
             }
         }
     }, []);
@@ -69,8 +69,21 @@ const TriviaBuilder = ({ profile, setQuestions }) => {
             console.error('User ID is undefined');
             return;
         }
-
-        console.log({ userId, localQuestions }); 
+    
+        // Validate the structure of localQuestions
+        const isValid = localQuestions.every(question => {
+            if (!question.title || typeof question.title !== 'string') return false;
+            if (!Array.isArray(question.options) || question.options.length === 0) return false;
+            return question.options.every(option => option.title && typeof option.title === 'string');
+        });
+    
+        if (!isValid) {
+            console.error('Invalid questions structure', localQuestions);
+            return;
+        }
+    
+        console.log({ userId, localQuestions });
+    
         try {
             const response = await fetch('http://localhost:3001/api/trivia', {
                 method: 'POST',
@@ -79,22 +92,24 @@ const TriviaBuilder = ({ profile, setQuestions }) => {
                 },
                 body: JSON.stringify({ userId, questions: localQuestions })
             });
-
+    
             if (!response.ok) {
+                const errorDetail = await response.json();
+                console.error('Server Error:', errorDetail);
                 throw new Error('Network response was not ok');
             }
-
+    
             const result = await response.json();
             setQuestions(localQuestions); // Update the questions in TTBuilder
             alert('Trivia saved successfully: ' + JSON.stringify(result));
         } catch (error) {
             console.error('Error:', error);
         }
-    };
+    };    
 
     const createQuestions = () => {
         return localQuestions.map((el, i) => (
-            <div className="d-flex flex-row bd-highlight mb-3" key={i}>
+            <div key={i}>
                 <input
                     placeholder="Title"
                     name="title"
@@ -144,7 +159,7 @@ const TriviaBuilder = ({ profile, setQuestions }) => {
                 onClick={addClick}
             />
             <br/>
-            <input type="submit" value="Submit" />
+            <input type="submit" value="Submit"/>
         </form>
     );
 };
