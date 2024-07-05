@@ -10,6 +10,7 @@ import Builder from './form_folder/builder_main';
 import MatchingTilesApp from './game_folder/matching_tiles/MatchingBuilder';
 import YesNoGameBuilder from './game_folder/yesnogame/yesnogame_builder';
 import PTBuilder from './test_folder/personality-test/PT_builder';
+import TestResult from './test_folder/personality-test/components/management/TestResult.tsx';
 import TTBuilder from './test_folder/trivia-test/TT_builder';
 import TriviaPreview from './test_folder/trivia-test/TT_preview';  
 import Profile from './profile';
@@ -33,6 +34,7 @@ root.render(
             <Route path='/game-builder/matching-tiles' element={<MatchingTilesApp />} />
             <Route path='/game-builder/yesno-game' element={<YesNoGameBuilder />} />
             <Route path='/test-builder/personality-test' element={<PTBuilder />} />
+            <Route path='/test-builder/personality-test/result' element={<TestResult />} />
             <Route path='/test-builder/trivia-test' element={<TTBuilder />} />
             <Route path='/test-builder/trivia-test/preview' element={<TriviaPreview />} /> 
           </Routes>

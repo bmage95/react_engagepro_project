@@ -5,6 +5,9 @@ import Box from '@mui/material/Box';
 import CustomTabPanel, { a11yProps } from '../../components/tab_panel';
 import AppBar from '../../components/appbar'
 import OpenAiChat2 from './AI_chat2';
+import TestManagement from './components/management/TestManagement.tsx';
+import Test from './components/management/Test.tsx';
+
 
 const PTBuilder = () => {
     const [value, setValue] = useState(0);
@@ -24,10 +27,10 @@ const PTBuilder = () => {
           </Tabs>
         </Box>
         <CustomTabPanel value={value} index={0}>
-            <p>hi</p>
+          <TestManagement />
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
-            <p>hi2</p>
+          <Test />
         </CustomTabPanel>
         <CustomTabPanel value={value} index={2}>
             <OpenAiChat2/>
