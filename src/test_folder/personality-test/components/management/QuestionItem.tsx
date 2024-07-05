@@ -1,5 +1,9 @@
 import React from 'react'
 import { FaEdit, FaTrash } from 'react-icons/fa'
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import Fab from '@mui/material/Fab';
+import './PT_main.scss'
 
 const QuestionItem = ({
     item,
@@ -10,12 +14,12 @@ const QuestionItem = ({
         <div>
             {item.question}
             <div>
-            <button onClick={() => editElem(item.id)} className='rounded-full p-3 bg-primary mx-1'>
-                <FaEdit className='text-white' />
-            </button>
-            <button onClick={() => removeElem(item.id)} className='rounded-full p-3 bg-red-600 mx-1'>
-                <FaTrash className='text-white' />
-            </button>
+            <Fab onClick={() => editElem(item.id)} className='edel' aria-description='edit'>
+                <EditIcon />
+            </Fab> 
+            <Fab onClick={() => removeElem(item.id)} className='edel' aria-description='delete'>
+                <DeleteIcon />
+            </Fab> 
             </div>
         </div>
     )

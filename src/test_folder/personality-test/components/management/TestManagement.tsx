@@ -3,6 +3,8 @@ import { FaPlus } from 'react-icons/fa'
 import { setData, getData } from '../data/database.ts'
 import DataModal from '../DataModel.tsx'
 import QuestionItem from './QuestionItem.tsx'
+import AddIcon from '@mui/icons-material/Add';
+import Fab from '@mui/material/Fab';
 
 const initElem = () => {
     return {
@@ -54,14 +56,13 @@ const TestManagement = () => {
     }
 
     return (
-        <div>
+        <div className='TestMaker'>
             <div>
                 <h1>Personality Test Maker</h1>
                 <div>
-                    <button onClick={() => setIsOpen(true)}>
-                        <FaPlus/>
-                        &nbsp;&nbsp;Add a question
-                    </button>
+                    <Fab onClick={() => setIsOpen(true)} className='AddQues' variant="extended">
+                        <AddIcon />&nbsp;Add a Question
+                    </Fab> 
                 </div>
                 <hr/>
                 <div>

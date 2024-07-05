@@ -1,6 +1,6 @@
 import React from 'react'
 import { FaChevronLeft, FaChevronRight, FaHome } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import './PT_main.scss'
 
 const TestUI = ({
     data,
@@ -11,7 +11,7 @@ const TestUI = ({
     isAnswerSelected
 }: any) => {
     return (
-        <div>
+        <div className='TestUI'>
             <div>
                 <h1>Personality Test Preview</h1>
                 <hr/>
@@ -23,20 +23,19 @@ const TestUI = ({
                     ) : (
                         <>
                             <div>
-                                <span className='text-2xl font-bold'>
+                                <span>
                                     {data[index].question}
                                 </span>
-                                <div className='flex flex-col items-start gap-4 mt-4 h-[40vh] overflow-auto'>
+                                <div>
                                     {
                                         data[index].responses.map((resp: any) =>
-                                            <button key={resp.id} onClick={() => selectAnswer(resp.id)}
-                                                className={`py-4 px-8 w-full text-left rounded-lg bg-slate-200 focus:border-2 focus:border-primary ${resp.selected ? 'border-2 border-primary' : ''}`}>
+                                            <button key={resp.id} onClick={() => selectAnswer(resp.id)}>
                                                 {resp.label}
                                             </button>)
                                     }
                                 </div>
                             </div>
-                            <div className='flex justify-around'>
+                            <div>
                                 <button onClick={prevQuestion} disabled={index == 0}>
                                     <FaChevronLeft/>
                                     Previous
